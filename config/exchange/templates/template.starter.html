@@ -28,16 +28,113 @@
           <h2>Start inquiries</h2>
           <p>Ready to go further? Follow the steps below.</p>
           <ul class="icon-list">
-            <li><a href="" rel="noopener" target="_blank">Request token</a></li>
-            <li><a href="" rel="noopener" target="_blank">Token status</a></li>
-            <li><a href="" rel="noopener" target="_blank">Consult sources of exchange</a></li>
+            <li><a href="{% url 'request-token' %}" rel="noopener">Request token</a></li>
+            <li><a href="{% url 'status-token' %}" rel="noopener">Token status</a></li>
+            <li><a href="{% url 'api-rest' %}" rel="noopener">Consult sources of exchange</a></li>
           </ul>
         </div>
   
         <div class="col-md-7">
             <h2>Api Rest</h2>
             <div class="card">
-                <div class="card-body"></div>
+                <div class="card-body">
+
+                    {% if message %}
+                    <div class="alert alert-warning" role="alert">
+                        {{message}}
+                    </div>
+                    {% endif %}
+
+                    {% if token %}
+                    <div class="alert alert-success" role="alert">
+                        {{token}}
+                    </div>
+                    <small class="fst-italic">
+                        copy and paste the token in
+                        <small class="text-muted fw-bold">Consult sources of exchange</small>
+                    </small>
+                    {% endif %}
+
+                    {% if form %}
+                    <form class="card p-2 border-0" method="POST" action="{% url 'api-rest' %}">
+                        {% load widget_tweaks %}
+                        {% csrf_token %}
+                        <div class="input-group">
+                            {{ form.token }}
+                            <button type="submit" class="btn btn-dark">submit</button>
+                        </div>
+                    </form>
+                    {% endif %}
+
+                    {% if status %}
+                    <form class="card p-2 border-0" method="POST" action="{% url 'status-token' %}">
+                        {% load widget_tweaks %}
+                        {% csrf_token %}
+                        <div class="input-group">
+                            {{ status.token }}
+                            <button type="submit" class="btn btn-dark">submit</button>
+                        </div>
+                    </form>
+                    {% endif %}
+
+                    {% if table %}
+                    <table class="table table-dark table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Last update</th>
+                            <th scope="col">Value</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>{{date_fixer_api}}</td>
+                            <td>{{value_fixer_api}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2 variant (1)</th>
+                            <td>{{date_banxico_page}}</td>
+                            <td>{{value_banxico_page}}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2 variant (2)</th>
+                            <td>{{date_banxico_api}}</td>
+                            <td>{{value_banxico_api}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    {% endif %}
+
+                    {% if status_table %}
+                    <table class="table table-dark table-hover h6 table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Token</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Life</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in status_table %}
+                            <tr>
+                                <th scope="row">
+                                    <small style="font-size: 10px;">{{i.token}}</small>
+                                </th>
+                                <td>
+                                    <small>{{i.status}}</small>
+                                </td>
+                                <td>
+                                    <small>{{i.life}}</small>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                    {% endif %}
+
+
+                </div>
             </div>
          
         </div>

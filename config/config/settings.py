@@ -43,7 +43,7 @@ INSTALLED_APPS_BASE = [
 INSTALLED_APPS_CUSTOM = [
     'widget_tweaks',
     'crispy_forms',
-    'exchange',
+    'exchange.apps.ExchangeConfig',
 
 ]
 
@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}"""
+}
 
 
 # Password validation

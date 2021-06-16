@@ -4,8 +4,8 @@ from .views import *
 
 urlpatterns = [
 	path('', IndexView.as_view(), name='index'),
-    path('token', TokenView.as_view(), name='token'),
-    path('solicitar/token', AddTokenView.as_view(), name='solicitar-token'),
-    path('generate/token', CreateTokensView.as_view(), name='generate-token'),
-    path('exchange/api', ApiView.as_view(), name='api')
+    #path('request/token', TokenView.as_view(), name='token'),
+    path('request/token', RequestTokenView.as_view(), name='request-token'),
+    path('status/token', StatusTokenView.as_view(), name='status-token'),
+    path('exchange/api', ApiRestView.as_view(), name='api-rest')
 ]
