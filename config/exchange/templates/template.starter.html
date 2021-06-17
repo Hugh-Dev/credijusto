@@ -31,6 +31,9 @@
             <li><a href="{% url 'request-token' %}" rel="noopener">Request token</a></li>
             <li><a href="{% url 'status-token' %}" rel="noopener">Token status</a></li>
             <li><a href="{% url 'api-rest' %}" rel="noopener">Consult sources of exchange</a></li>
+            {% if authtoken %}
+            <li><a href="{% url 'enpoint-rest-api' token=authtoken %}" rel="noopener">Endpoint rest api</a></li>
+            {% endif %}
           </ul>
         </div>
   
@@ -52,6 +55,7 @@
                     <small class="fst-italic">
                         copy and paste the token in
                         <small class="text-muted fw-bold">Consult sources of exchange</small>
+                        and generate endpoint.
                     </small>
                     {% endif %}
 
