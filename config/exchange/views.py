@@ -115,7 +115,6 @@ class ApiRestView(View):
                         }
                     }
             
-                #context = {'response':format}
                 context = {'table':'Rates:','authtoken':token,'date_fixer_api':date_fixer_api,'value_fixer_api':value_fixer_api,'date_banxico_page':date_banxico_page,'value_banxico_page':value_banxico_page,'date_banxico_api':date_banxico_api,'value_banxico_api':value_banxico_api}
                 return render(request, self.template_name, context)
             else:
@@ -153,7 +152,6 @@ class EnpointView(View):
         queryset = TokenModel.objects.filter(token=token)
         for i in queryset:
             life = i.life
-        
             update = TokenModel.objects.filter(token=token).update(life=life-1)
 
         """Api Rest Fixer """
