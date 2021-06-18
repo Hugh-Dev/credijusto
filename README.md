@@ -17,7 +17,7 @@
 1. Clone the repository:
 
 ```
-$ git clone https://github.com/Hugh-Dev/credijusto.git --recursive --jobs 3
+$ git clone https://github.com/Hugh-Dev/credijusto.git
 ```
 
 2. Go to the cloned directory:
@@ -47,7 +47,7 @@ $ python manage.py runserver
 1. Clone the repository:
 
 ```
-$ git clone https://github.com/Hugh-Dev/credijusto.git --recursive --jobs 3
+$ git clone https://github.com/Hugh-Dev/credijusto.git 
 ```
 
 2. Go to the cloned directory:
